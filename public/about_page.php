@@ -22,7 +22,7 @@ require 'connect.php';
 /**
  * include file which will be used as a template for each page as a header
  */
-include __DIR__ . '/../../inc/header.inc.php';
+include __DIR__ . '/../inc/header.inc.php';
 
 ?>
       <title><?=$title?></title>
@@ -52,7 +52,7 @@ include __DIR__ . '/../../inc/header.inc.php';
   /**
    * include file which will be used as a template for each page as a footer
    */
-   include __DIR__ . '/../../inc/footer.inc.php';
+   include __DIR__ . '/../inc/footer.inc.php';
 
   ?>    
      

@@ -19,7 +19,7 @@ $h1 = 'Visit Coffee Time';
 /**
  * include file which will be used as a template for each page as a header
  */
-include __DIR__ . '/../../inc/header.inc.php';
+include __DIR__ . '/../inc/header.inc.php';
 
 require 'functions.php';
 include 'connect.php';
@@ -251,7 +251,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
   /**
    * include file which will be used as a template for each page as a footer
    */
-   include __DIR__ . '/../../inc/footer.inc.php';
+   include __DIR__ . '/../inc/footer.inc.php';
 
   ?>    
 </html>
