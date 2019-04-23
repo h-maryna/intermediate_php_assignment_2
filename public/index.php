@@ -13,7 +13,7 @@ $h1 = 'Our Atmosphere';
 /**
  * include file which will be used as a template for each page as a header
  */
-include __DIR__ . '/../../inc/header.inc.php';
+include __DIR__ . '/../inc/header.inc.php';
 require 'functions.php';
 require 'connect.php';
 
@@ -81,7 +81,7 @@ require 'connect.php';
    /**
    * include file which will be used as a template for each page as a footer
    */
-    include __DIR__ . '/../../inc/footer.inc.php';
+    include __DIR__ . '/../inc/footer.inc.php';
 
   ?>
     </div>
