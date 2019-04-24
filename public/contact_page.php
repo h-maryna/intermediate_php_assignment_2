@@ -21,6 +21,8 @@ $h1 = 'Visit Coffee Time';
  */
 include __DIR__ . '/../inc/header.inc.php';
 
+require __DIR__ . '/classes/Validator.php';
+
 require 'functions.php';
 include 'connect.php';
 
@@ -30,6 +32,7 @@ include 'connect.php';
 // if we have errors
 $errors = [];
 
+$v = new Validator();
 // Set flag that form has not been
 // submitted successfully.  This will
 // be used as a conditional to determine
@@ -40,40 +43,24 @@ $success = false;
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
   
   // Our required fields
-  $required = ['first_name', 'last_name', 'street', 'city', 'postal_code', 'province', 'country', 'phone', 'email', 'password'];
+  $required = ['first_name', 'last_name', 'age', 'street', 'city', 'postal_code', 'province', 'country', 'phone', 'email', 'password'];
 
   // Make sure there is a POST value for each
   // required field
   foreach($required  as $key => $value) {
-
-    if(empty($_POST[$value])) {
-      // Set an error message in the errors
-      // array if there is no POST value for
-      // a field
-      $errors[$value] = $value . ' is a required field';
-    }
-
-    if(strlen($_POST['first_name']) < 3) {
-      $errors['first_name'] = 'First name must have at least 3 characters';
-    }
-    
-    if(strlen($_POST['last_name']) < 4) {
-      $errors['last_name'] = 'Last name must have at least 4 characters';
-    }
-
-    if(strlen($_POST['country']) < 2) {
-      $errors['country'] = 'Country must have at least 2 characters';
-    }
-
-    if((strlen($_POST['postal_code']) < 5) && (strlen($_POST['postal_code']) >6)){
-      $errors['postal_code'] = 'Postal code must have 6 characters';
-    }
-
-    if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-      $errors['email'] = 'Please provide a valid email address';
-    }
-
+    $v->required($value);
+    $v->string('first_name');
+    $v->string('last_name');
+    $v->string('city');
+    $v->string('street');
+    $v->integer('age');
+    $v->postal_code('postal_code');
+    $v->password('password');
   }
+  
+
+  $errors = $v->errors();
+
 
   
   // If there are no errors after processing all POST
@@ -93,6 +80,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
       $params = array(
         ':first_name' => $_POST['first_name'],
         ':last_name' => $_POST['last_name'],
+        ':age' => $_POST['age'],
         ':street' => $_POST['street'],
         ':city' => $_POST['city'],
         ':postal_code' => $_POST['postal_code'],
@@ -133,7 +121,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     
   } // end if
+
 } // END IF POST
+
 
 
 ?>
@@ -164,19 +154,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
    
       <h1>Registration</h1>
   <?php include 'errors.inc.php'; ?>
-  <?php if($errors) : ?>
-
-  <h1>We found errors</h1>
-    <div class="errors">
-      <p>Please go back and correct the following errors:</p>
-      <ul>
-      <?php foreach($errors as $value) : ?>
-        <li><?=e($value)?></li>
-      <?php endforeach; ?>
-      </ul>
-    </div>
-
-  <?php endif; ?>
+  
 
 
 <?php if(!$success) : ?>
@@ -190,6 +168,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
   <p><label for="last_name">Last Name</label><br />
     <input type="text" name="last_name"
     value="<?=clean('last_name')?>" /></p>
+  <p><label for="age">Age</label><br />
+    <input type="text" name="age"
+    value="<?=clean('age')?>" /></p>
   <p><label for="street">Street</label><br />
     <input type="text" name="street" 
     value="<?=clean('street')?>" /></p>
