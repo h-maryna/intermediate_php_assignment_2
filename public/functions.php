@@ -25,3 +25,8 @@ function clean($field) {
 		return '';
 	}
 }
+
+function getToken()
+{
+	return $_SESSION['token'];
+}

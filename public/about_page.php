@@ -22,8 +22,8 @@ require 'connect.php';
 /**
  * include file which will be used as a template for each page as a header
  */
-include __DIR__ . '/../inc/header.inc.php';
 
+include __DIR__ . '/../inc/header.inc.php';
 ?>
       <title><?=$title?></title>
       <main>

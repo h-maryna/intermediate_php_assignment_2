@@ -19,12 +19,11 @@ $h1 = 'Visit Coffee Time';
 /**
  * include file which will be used as a template for each page as a header
  */
-include __DIR__ . '/../inc/header.inc.php';
 
 require __DIR__ . '/classes/Validator.php';
-
-require 'functions.php';
-include 'connect.php';
+require __DIR__ . '/../config/config.php';
+require __DIR__ .'/functions.php';
+include __DIR__ . '/connect.php';
 
 // empty errors array
 // serves as flag... we
@@ -61,7 +60,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   $errors = $v->errors();
 
-
+  
   
   // If there are no errors after processing all POST
    if(!$errors) {
@@ -125,7 +124,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 } // END IF POST
 
 
-
+include __DIR__ . '/../inc/header.inc.php';
 ?>
     <title><?=$title?></title>
     <main><!--Main page -->
@@ -160,6 +159,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 <?php if(!$success) : ?>
 
 <form method="post" action="contact_page.php" novalidate>
+  <input type="hidden" name="token" value="<?=getToken()?>" />
 <fieldset>
   <legend>Registration Form</legend>
   <p><label for="first_name">First Name</label><br />

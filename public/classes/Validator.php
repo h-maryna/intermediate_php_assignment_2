@@ -68,7 +68,7 @@ class Validator
 
     public function integer($field){
         $integer = filter_input(INPUT_POST, $field);
-        $pattern = '/[1]{1}[0-9]+/';
+        $pattern = '/[0-1]{1}[0-9]{0,2}+/';
         if(!preg_match($pattern, $integer)){
             $this->setError($field, 'You should be older 10 years' . ' ' . $field);
         } 
@@ -84,11 +84,12 @@ class Validator
 
     public function password($field){
         $password = filter_input(INPUT_POST, $field);
-        $pattern = '/(?=.*[A-Z]+[$%^&@#!+-~]+[A-Z]{2}[a-zA-Z]+[0-9]!)/';
+        $pattern = '/(?=.*[A-Z]+[$%^&@#!+-~]+[A-Z]{2}[a-zA-Z]+[0-9]!)/'; //Myp@SSword3!
         if(!preg_match($pattern, $password)){
             $this->setError($field, 'Please provide a proper password');
         } 
     } 
+
 }
 
 
