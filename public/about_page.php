@@ -1,14 +1,21 @@
 <?php 
 /**
  * WDD4
- * Intro PHP
+ * Intermrdiate PHP
  * Assignment 2
  * Instructor Steve George
  * Maryna Haidashevska
  */
- /**
+
+
+require __DIR__ . '/../lib/functions.php';
+require __DIR__ . '/../config/connect.php';
+require __DIR__ . '/../config/config.php';
+require __DIR__ . '/classes/Validator.php';
+
+/**
   * assigning a new variable for title
-  */
+*/ 
 $title = 'about_page';
 
 /**
@@ -16,8 +23,6 @@ $title = 'about_page';
  */
 $h1 = 'Hello from Coffee Time';
 
-require 'functions.php';
-require 'connect.php';
 
 /**
  * include file which will be used as a template for each page as a header

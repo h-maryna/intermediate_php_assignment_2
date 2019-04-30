@@ -29,4 +29,21 @@ function clean($field) {
 function getToken()
 {
 	return $_SESSION['token'];
+} 
+
+/**
+ * [dd description]
+ * @param  [type] $var [description]
+ * @return [type]      [description]
+ */
+function dd($var)
+{
+	echo '<pre>';
+	var_dump($var);
+	echo '</pre>';
+}
+
+function setFlash($type, $message)
+{
+	$_SESSION['message'] = [$type, $message];
 }

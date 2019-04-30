@@ -64,14 +64,33 @@
       background-color: #a95b0d;
       position: relative;
     }
-    /*CSS for site navigation 
-    body header #index_page nav ul li a.page1,
-    body header #about_page nav ul li a.page2,
-    body header #menu_page nav ul li a.page3,
-    body header #contact_page nav ul li a.page4,
-    body header #coffee_beans_page nav ul li a.page5{
-      background-color: #ff0000;
-    } */
+    .flash.success {
+      background: #dff0d8;
+      color: #009900;
+      border: 1px solid #009900;
+      border-radius: 15px;
+      text-align: center;
+      line-height: 50px;
+      font-size: 16px;
+      margin-top: 5px;
+    }
+
+    .flash.error {
+      background: #ffeeee;
+      color: #990000;
+      border: 1px solid #990000;
+      border-radius: 15px;
+      text-align: center;
+      line-height: 50px;
+      font-size: 16px;
+      margin-top: 5px;
+    }
+    div #profile{
+      width: 150px;
+      height: 150px;
+      background-image: url(../images/user.jpg);
+      background-repeat: no-repeat;
+    }
     header nav{
       width: 100%;
       min-height: auto;
@@ -113,8 +132,11 @@
     body#index_page div#wrapper header nav ul#navlist li a.page1,
     body#about_page div#wrapper header nav ul#navlist li a.page2,
     body#menu_page div#wrapper header nav ul#navlist li a.page3,
-    body#coffee_beans_page div#wrapper header nav ul#navlist li a.page4,
-    body#contact_page div#wrapper header nav ul#navlist li a.page5{
+    body#shop_page div#wrapper header nav ul#navlist li a.page4,
+    body#login_page div#wrapper header nav ul#navlist li a.page5,
+    body#register_page div#wrapper header nav ul#navlist li a.page6, 
+    body#profile_page div#wrapper header nav ul#navlist li a.page7,
+    body#contact_page div#wrapper header nav ul#navlist li a.page8{
       background-color: #c60;
     }
     

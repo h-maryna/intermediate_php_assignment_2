@@ -52,7 +52,7 @@
     <!-- Assigning a new style to coffee_beans_page 
       -- return changing a style
     -->
-    <?php if($title == 'coffee_beans_page') {
+    <?php if($title == 'shop_page') {
          include __DIR__ . '/../inc/embedded.css';
     } 
     ?>
@@ -91,6 +91,7 @@
       <header><!-- Main logo and services tagline -->
         <div id="header">
           <div id="main_logo"></div>
+          <div id="login"></div>
           <div id="facebook"></div>
           <div id="instagram"></div>
         </div>
@@ -105,8 +106,16 @@
             <li><a href="index.php" class="page1">Home</a></li>
             <li><a href="about_page.php" class="page2">About</a></li>
             <li><a href="menu_page.php" class="page3">Menu</a></li>
-            <li><a href="coffee_beans_page.php" class="page4">Coffee Beans</a></li>
-            <li><a href="contact_page.php" class="page5">Contact</a></li>
+            <li><a href="shop_page.php" class="page4">Shop</a></li>
+            <?php if(empty($_SESSION['logged_in'])) : ?>
+            <li><a href="login_page.php" class="page5">Login</a></li>
+            <li><a href="register_page.php" class="page6">Register</a></li>
+              <?php else: ?>
+            <li><a href="profile_page.php" class="page7">Profile</a></li>
+            <li><a href="login_page.php?logout=1">Logout</a></li>
+              <?php endif; ?>
+            <li><a href="contact_page.php" class="page8">Contact</a></li>
+
           </ul>
         </nav>
       </header>

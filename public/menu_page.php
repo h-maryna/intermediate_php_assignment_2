@@ -1,11 +1,17 @@
 <?php 
 /**
  * WDD4
- * Intro PHP
+ * Intermrdiate PHP
  * Assignment 2
  * Instructor Steve George
  * Maryna Haidashevska
  */
+
+
+require __DIR__ . '/../lib/functions.php';
+require __DIR__ . '/../config/connect.php';
+require __DIR__ . '/../config/config.php';
+
  /**
   * assigning a new variable for title
   */
@@ -19,9 +25,8 @@ $h1 = 'Coffee Time Menu';
 /**
  * include file which will be used as a template for each page as a header
  */
+
 include __DIR__ . '/../inc/header.inc.php';
-require 'functions.php';
-require 'connect.php';
 
 ?>
     <title><?=$title?></title>
