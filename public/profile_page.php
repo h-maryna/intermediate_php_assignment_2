@@ -23,14 +23,17 @@ $title = 'profile_page';
 $h1 = 'Welcome to your profile page!';
 
 
-// User should not see this page
+/*// User should not see this page
 if(empty($_SESSION['logged_in'])){
 	setFlash('error', "You must be logged in to visit this page");
 	header('Location: login_page.php');
 	die;
+}*/
+if(empty($_SESSION['customer_id'])){
+  die('User id reqiired');
 }
-
-$errors = [];
+$id = intval($_SESSION['customer_id']);
+/*$errors = [];
 
 $v = new Validator();
 // Set flag that form has not been
@@ -47,6 +50,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
   // If there are no errors after processing all POST
    if(!$errors) {
    try {
+    */
       // Create query to select a customer according its id
     $query = "SELECT first_name, last_name, age, street, city, postal_code, province, country, phone, email FROM customer 
             WHERE customer_id = :customer_id";
@@ -64,14 +68,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // get the result
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $success = true;
+    /*$success = true;
         } catch(Exception $e) {
           die($e->getMessage());
         }
     
   } // end if
 
-} // END IF POST
+} // END IF POST */
 
 
 include __DIR__ . '/../inc/header.inc.php';
@@ -85,11 +89,9 @@ include __DIR__ . '/../inc/header.inc.php';
 
 <h1>Profile</h1>
 <div id="profile"></div>
-<?php if(!$success) : ?>
+<?php if($result) : ?>
 
-<?php else : ?>
-
-<h2>This is information about you!</h2>
+<h2><?=$result['first_name']?> This is information about you!</h2>
 
   <ul><!-- Loop through $_POST to output user -->
   <?php foreach($result as $key => $value): ?>
@@ -102,6 +104,9 @@ include __DIR__ . '/../inc/header.inc.php';
     <?php endif; ?>
   <?php endforeach; ?>
     </ul>
+    <p><a href="register_page.php">Add another user</a></p>
+  <?php else : ?>
+    <h2>There were some problem adding a new user</h2>
 <?php endif; ?>
 
 
