@@ -6,7 +6,7 @@ ini_set('error_reporting', E_ALL);
 /*
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_DSN', 'mysql:host=localhost;dbname=assignment');*/
+define('DB_DSN', 'mysql:host=localhost;dbname=assignment'); */
 
 
 define('DB_USER', 'web_user');

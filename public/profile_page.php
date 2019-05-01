@@ -22,36 +22,16 @@ $title = 'profile_page';
  */
 $h1 = 'Welcome to your profile page!';
 
-
-/*// User should not see this page
+// User should not see this page
 if(empty($_SESSION['logged_in'])){
 	setFlash('error', "You must be logged in to visit this page");
 	header('Location: login_page.php');
 	die;
-}*/
-if(empty($_SESSION['customer_id'])){
-  die('User id reqiired');
 }
-$id = intval($_SESSION['customer_id']);
-/*$errors = [];
 
-$v = new Validator();
-// Set flag that form has not been
-// submitted successfully.  This will
-// be used as a conditional to determine
-// what to display in the view.
-$success = false;
+$id = intval($_SESSION['logged_in']);
 
-// If the request is POST (a form submission)
-if($_SERVER['REQUEST_METHOD'] == 'POST') {
-  
-  $errors = $v->errors();
-  
-  // If there are no errors after processing all POST
-   if(!$errors) {
-   try {
-    */
-      // Create query to select a customer according its id
+    // Create query to select a customer according its id
     $query = "SELECT first_name, last_name, age, street, city, postal_code, province, country, phone, email FROM customer 
             WHERE customer_id = :customer_id";
 
@@ -60,7 +40,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
       // Prepare params array
       $params = array(
-        ':customer_id' => $customer_id
+        ':customer_id' => $id
     );
 
     // execute the query
@@ -68,15 +48,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // get the result
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    /*$success = true;
-        } catch(Exception $e) {
-          die($e->getMessage());
-        }
-    
-  } // end if
-
-} // END IF POST */
-
 
 include __DIR__ . '/../inc/header.inc.php';
 
@@ -87,28 +58,24 @@ include __DIR__ . '/../inc/header.inc.php';
   <main>
     <h1><?=$h1?></h1>
 
-<h1>Profile</h1>
 <div id="profile"></div>
+
 <?php if($result) : ?>
-
-<h2><?=$result['first_name']?> This is information about you!</h2>
-
   <ul><!-- Loop through $_POST to output user -->
   <?php foreach($result as $key => $value): ?>
     <!-- Test each value to see if it's an array, and
       if it's NOT an array, we can print it out -->
     <?php if(!is_array($value)) : ?>
       <li><strong><?=e($key)?></strong>: <?=e($value)?></li>
-      </li>
 
     <?php endif; ?>
   <?php endforeach; ?>
     </ul>
+
     <p><a href="register_page.php">Add another user</a></p>
   <?php else : ?>
     <h2>There were some problem adding a new user</h2>
 <?php endif; ?>
-
 
 
 </body>

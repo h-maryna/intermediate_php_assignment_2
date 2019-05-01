@@ -24,13 +24,15 @@ $title = 'login_page';
 $h1 = 'Please log in into your account';
 
 
+// conditions for logout session
 if(filter_input(INPUT_GET, 'logout')){
-  //$_SESSION =[];
+
   session_destroy();
   
   //start new session after logged in
   session_start();
-
+  
+  // Message for success logged out
   setFlash('success', 'You have successfully logged out');
   // redirect to the same page
   header('Location: login_page.php');
@@ -45,6 +47,8 @@ if('POST' == filter_input(INPUT_SERVER, 'REQUEST_METHOD')){
   $v->required('first_name');
   $v->required('email');
   $v->required('password'); 
+  $v->string('first_name');
+  $v->password('password');
 
   if(!$v->errors()){
   $query = "SELECT * FROM customer WHERE email = :email";
@@ -70,8 +74,8 @@ if('POST' == filter_input(INPUT_SERVER, 'REQUEST_METHOD')){
         // Set session logged_in to 1
         session_regenerate_id();
         $_SESSION['logged_in'] = 1;
-        setFlash('success', filter_input(INPUT_POST, 'first_name') . ', you have successfully logged in');
-        // redirect customer to profile
+        setFlash('success', 'Welcome back, ' . filter_input(INPUT_POST, 'first_name') . ' ' . '! You have successfully logged in.');
+        // redirect customer to profile page
         header('Location: profile_page.php');
         // die
         die;

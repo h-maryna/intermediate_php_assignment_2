@@ -102,9 +102,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
       $customer_id = $dbh->lastInsertId();
       //header('Location: redirect_form.php');
-      //header('Location: redirect_form.php?customer_id=' . $customer_id);
+      header('Location: redirect_form.php?customer_id=' . $customer_id);
       //exit;
-
+/*
       // Create query to select a customer according its id
     $query = "SELECT first_name, last_name, age, street, city, postal_code, province, country, phone, email FROM customer 
             WHERE customer_id = :customer_id";
@@ -122,7 +122,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // get the result
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $success = true;
+    $success = true; */
         } catch(Exception $e) {
           die($e->getMessage());
         }

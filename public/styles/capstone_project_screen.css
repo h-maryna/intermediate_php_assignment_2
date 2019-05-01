@@ -86,6 +86,7 @@
       margin-top: 5px;
     }
     div #profile{
+      margin-left: 55px;
       width: 150px;
       height: 150px;
       background-image: url(../images/user.jpg);
@@ -139,7 +140,7 @@
     body#contact_page div#wrapper header nav ul#navlist li a.page8{
       background-color: #c60;
     }
-    
+   
     /* CSS style for main content */
     main{
       font-size: 18px;
